@@ -3,294 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steven Parks - Professional Portfolio</title>
+    <title>Steven Parks - Technical Advisor & AI Enablement</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            margin-bottom: 1rem;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            margin-top: 0;
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-        .experience-item, .project-item {
-            margin-bottom: 1.5rem;
-        }
-        .project-item img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            margin-top: 1rem;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
-            height: 0;
-            overflow: hidden;
-            margin: 1.5rem 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .video-wrapper iframe,
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        body {font-family: Arial, sans-serif; line-height: 1.7; margin: 0; background:#f8f9fa; color:#333;}
+        header {background: linear-gradient(135deg, #007bff, #0056b3); color:white; text-align:center; padding:3rem 1rem;}
+        nav {background:#343a40; padding:1rem; text-align:center;}
+        nav a {color:white; margin:0 1.2rem; text-decoration:none; font-weight:500;}
+        nav a:hover {text-decoration:underline;}
+        section {max-width:900px; margin:2rem auto; padding:2rem; background:white; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+        h1 {margin:0; font-size:2.8rem;}
+        h2 {color:#007bff; border-bottom:3px solid #007bff; padding-bottom:0.5rem;}
+        h3 {color:#0056b3; margin-top:2rem;}
+        .project {background:#f1f3f5; padding:2rem; border-radius:10px; margin:2rem 0;}
+        .project img {max-width:100%; border:1px solid #ddd; border-radius:8px; margin:1.5rem 0; box-shadow:0 6px 16px rgba(0,0,0,0.15);}
+        .step {background:white; padding:1rem; border-left:5px solid #007bff; margin:1.5rem 0;}
+        .contact {font-size:1.1rem;}
+        footer {text-align:center; padding:2rem; background:#343a40; color:white; margin-top:3rem;}
+        @media (max-width:768px) {nav a{display:block; margin:1rem 0;}}
     </style>
 </head>
 <body>
 
     <header>
         <h1>Steven Parks</h1>
-        <p>Technical Advisor | AI & Operations Expert</p>
+        <p>Technical Advisor – AI Enablement | Automation | Measurement<br>Devon Energy | Oklahoma City, OK</p>
+        <div class="contact">
+            (405) 226-3534 · Steven_Parks@outlook.com · 
+            <a href="https://www.linkedin.com/in/steven-parks/" style="color:white;text-decoration:underline">linkedin.com/in/steven-parks</a>
+        </div>
     </header>
 
     <nav>
-        <a href="#about">About</a>
-        <a href="#experience">Professional Experience</a>
-        <a href="#projects">Tools & Dashboards</a>
+        <a href="#summary">Summary</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Tools & AI Agents</a>
         <a href="#education">Education</a>
         <a href="#volunteering">Volunteering</a>
-        <a href="#contact">Contact</a>
     </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Seasoned professional with 18 plus years of experience, primarily in oil and gas operations and leadership roles. I have a passion for people, leadership, process improvement, technology, innovation, and solving problems. I embrace change, and I place a heavy emphasis on safety, value creation, process improvement, leveraging technology, accountability and controlling the controllables.</p>
-        <h3>Core Competencies</h3>
-        <ul>
-            <li>Strategic Leadership</li>
-            <li>Thought Leadership</li>
-            <li>Servant Leadership</li>
-            <li>Continuous Improvement</li>
-            <li>Technology Integration</li>
-            <li>Operations Management</li>
-            <li>Talent Development</li>
-            <li>Team Building</li>
-        </ul>
+    <section id="summary">
+        <h2>Summary</h2>
+        <p>18+ years in oil & gas operations and leadership. I build practical AI agents, dashboards, and digital tools that save millions, reduce downtime, and make field teams’ lives dramatically easier.</p>
     </section>
 
     <section id="experience">
         <h2>Professional Experience</h2>
-        
-        <div class="experience-item">
-            <h3>Technical Advisor – Devon Energy – Oklahoma City, OK</h3>
-            <p>12/2023 – Present</p>
-            <ul>
-                <li>Coordinate with field leadership, regulatory, accounting and marketing to ensure compliance with company, industry, and regulatory requirements, e.g. BLM, API.</li>
-                <li>Advise engineering teams and various cross functional leaders on operational and facility design best practices.</li>
-                <li>Spearheaded the integration of SAP and TestIT databases resulting in a reduction of duplicative work and more reliable data flows.</li>
-                <li>Led initiatives to identify and document best practices for monthly close processes, resulting in a more cohesive and aligned team.</li>
-                <li>Developed an internal dashboard, creating a centralized resource for the team.</li>
-                <li>Developed a digital training hub with curated content, resources and training for measurement and non-measurement professionals with specialized AI agent.</li>
-                <li>Train and mentor Devon employees on practical and effective uses of AI specific to the employee’s discipline.</li>
-                <li>Built numerous AI agents, custom programs and tools for Devon teams using Python and/or JavaScript, CSS and HTML.</li>
-                <li>ChatDVN guru program member, bridging operations and AI to drive transformation.</li>
-            </ul>
-        </div>
-        
-        <div class="experience-item">
-            <h3>Technical Services Foreman – Devon Energy – Weatherford, OK</h3>
-            <p>08/2017 – 12/2023</p>
-            <ul>
-                <li>Directed I&E, automation, and measurement operations for the Mid-Con OK BU.</li>
-                <li>Designed frac sand detection and auto-dump system, resulting in yearly BU savings of $2-3MM.</li>
-                <li>Repurposed $1MM+ in stranded technology and cut battery expenses by 60% annually through solar sizing and optimization projects.</li>
-                <li>Reduced our team’s responsible downtime from 3% to <1% by strengthening QC, supply chain, and workforce management.</li>
-                <li>Implemented truck-based mesh inventory strategy, reducing miles driven for parts by 47%.</li>
-                <li>Developed internal upskilling program, enabling 62% of direct reports to move into more advanced technical or leadership roles.</li>
-                <li>Directed staffing needs, employee reviews, and development efforts.</li>
-                <li>Key stakeholder in monthly financial meetings as well as BU roadmap creation.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Senior I&E Technician – Enable Midstream Partners – Wheeler, TX</h3>
-            <p>01/2017 – 08/2017</p>
-            <ul>
-                <li>Maintained SCADA, instrumentation, and electrical systems in cryogenic plant; supported operators on maintenance and reliability tasks. Relocated.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Measurement Manager/BDM – Eagle Automation – Oklahoma Business Unit</h3>
-            <p>10/2015 – 01/2017</p>
-            <ul>
-                <li>Established Mid-Con BU for a PE-backed firm, hiring and developing technical teams, directing BD, and executing projects from bid through completion.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Business Development Manager – Emerson Automation Solutions – S.C. USA</h3>
-            <p>12/2014 – 09/2015</p>
-            <ul>
-                <li>Directed BD across multiple states; organized and led interdisciplinary teams. (Role ended during 2015 downturn.)</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Senior Gas & Liquid Measurement Analyst – Apache Corp. – Oklahoma</h3>
-            <p>07/2012 – 12/2014</p>
-            <ul>
-                <li>Led field measurement team; built SOPs; advised sr. leadership on midstream ops.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Pipeline/Measurement Operator – Enbridge – Oklahoma Business Unit</h3>
-            <p>09/2008 – 07/2012</p>
-            <ul>
-                <li>Operated pipelines, compressor stations, and facilities; transitioned into measurement and instrumentation.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Field Technician – MD Totco/N.O.V. – Elk City, Oklahoma</h3>
-            <p>01/2008 – 09/2008</p>
-            <ul>
-                <li>Installed servers, clients, SAT comms, and all necessary measurement and automation systems on drilling rigs for early digital transformation.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>3rd Class Petty Officer – United States Navy – Parris Island, SC</h3>
-            <p>11/2004 – 01/2012</p>
-            <ul>
-                <li>Sports medicine department supervisor. Field Medic. EMT. Active duty then reserve.</li>
-            </ul>
-        </div>
+        <p><strong>Technical Advisor – Devon Energy</strong> (Dec 2023 – Present)</p>
+        <p><strong>Technical Services Foreman – Devon Energy</strong> (2017 – 2023)</p>
+        <p>Previous roles at Enable Midstream, Eagle Automation, Emerson, Apache, Enbridge, US Navy, and more → full résumé available on request.</p>
     </section>
 
     <section id="projects">
-        <h2>Tools & Dashboards</h2>
-        
-        <div class="project-item">
-            <h3>AI-Enabled Data Processing Tool</h3>
-            <p>A custom tool for processing CSV files with well names, meter numbers, and group assignments. Features include duplicate removal, name concatenation (e.g., adding 'OIL WH CORIOLIS'), and due date calculations based on groups (e.g., Dec 2025 for Group 1).</p>
-            <!-- Embed or link to dashboard; for example, if hosted online: -->
-            <p><a href="https://example.com/data-tool-demo" target="_blank">View Demo</a></p>
-            <!-- Or add a screenshot: -->
-            <img src="path/to/screenshot-data-tool.png" alt="Data Processing Tool Screenshot">
-            <!-- Placeholder for demo video -->
-            <div class="video-wrapper">
-                <iframe width="100%" height="415" 
-                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
-                        title="Data Processing Tool Demo" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-        
-        <div class="project-item">
-            <h3>Pipeline Compliance Dashboard</h3>
-            <p>An interactive dashboard for monitoring DOT regulations, including leak detection, integrity management, and enforcement metrics. Built with tools like Python (Pandas, Matplotlib) for data visualization.</p>
-            <p><a href="https://example.com/compliance-dashboard" target="_blank">View Live Dashboard</a></p>
-            <img src="path/to/screenshot-compliance-dashboard.png" alt="Pipeline Compliance Dashboard Screenshot">
-            <!-- Placeholder for live embed if hosted -->
-            <iframe src="https://yourusername-pipeline-dashboard.streamlit.app/?embed=true" 
-                    width="100%" 
-                    height="600" 
-                    frameborder="0">
-            </iframe>
-        </div>
-        
-        <div class="project-item">
-            <h3>Internal Team Dashboard</h3>
-            <p>Centralized resource for teams, integrating data from SAP and TestIT for reliable flows and monthly close processes.</p>
-            <p><a href="https://example.com/internal-dashboard" target="_blank">View Demo</a></p>
-            <img src="path/to/screenshot-internal-dashboard.png" alt="Internal Dashboard Screenshot">
+        <h2>Tools & AI Agents I’ve Built</h2>
+
+        <!-- SAP Work Order Agent -->
+        <div class="project">
+            <h3>SAP Work Order Prioritization Agent for Field Operators</h3>
+            <p>Field operators simply ask the agent for their work orders. It pulls live SAP data, intelligently prioritizes by fastest route, highest production impact, regulatory deadlines, etc., then instantly generates a scannable QR code that opens the optimal route in Google Maps. Operators can tweak the plan anytime and get a new QR in seconds.</p>
+
+            <div class="step"><strong>Step 1</strong> – Operator queries their open work orders</div>
+            <img src="SAP Work Order #1.png" alt="SAP Agent – Query">
+
+            <div class="step"><strong>Step 2</strong> – Agent shows prioritized list with reasoning</div>
+            <img src="SAP Work Order #2.png" alt="SAP Agent – Prioritized List">
+
+            <div class="step"><strong>Step 3</strong> – Route optimization complete</div>
+            <img src="SAP Work Order #3.png" alt="SAP Agent – Route">
+
+            <div class="step"><strong>Step 4</strong> – QR code generated → scan and go</div>
+            <img src="SAP Work Order #4.png" alt="SAP Agent – QR Code">
         </div>
 
-        <div class="project-item">
-            <h3>Digital Training Hub with AI Agent</h3>
-            <p>Curated content and resources for measurement professionals, featuring a specialized AI agent for training and mentoring.</p>
-            <p><a href="https://example.com/training-hub" target="_blank">Access Hub</a></p>
-            <img src="path/to/screenshot-training-hub.png" alt="Training Hub Screenshot">
+        <!-- Training Hub -->
+        <div class="project">
+            <h3>Digital Training Hub (SharePoint)</h3>
+            <p>One-stop library with hundreds of standards, videos, PowerPoints, SOPs, and training materials for measurement and operations teams. Fully searchable and kept current.</p>
+            <img src="Training Hub.png" alt="Digital Training Hub">
         </div>
 
-        <div class="project-item">
-            <h3>Frac Sand Detection System</h3>
-            <p>Designed auto-dump system saving $2-3MM annually, with monitoring dashboard.</p>
-            <p><a href="https://example.com/frac-sand-demo" target="_blank">View Demo</a></p>
-            <img src="path/to/screenshot-frac-sand.png" alt="Frac Sand System Screenshot">
+        <!-- Training AI Agent -->
+        <div class="project">
+            <h3>Training & Analysis AI Agent</h3>
+            <p>Lives alongside the training hub. Users can ask questions, upload gas analyses or charts, and the agent instantly diagnoses issues (contaminated samples, meter problems, etc.) and explains fixes in plain language.</p>
+            <img src="Training Agent.png" alt="Training AI Agent">
         </div>
-        
-        <!-- Add more project items as needed -->
+
+        <p style="text-align:center; font-style:italic; margin-top:3rem;">
+            More tools and agents (frac-sand detection, solar/battery optimizer, compliance dashboards, etc.) available on request.
+        </p>
     </section>
 
     <section id="education">
         <h2>Education</h2>
         <ul>
-            <li>05/2025 M.B.A., Emporia State University</li>
-            <li>12/2024 M.S. Information Technology, Emporia State University</li>
+            <li>M.B.A. – Emporia State University (May 2025)</li>
+            <li>M.S. Information Technology – Emporia State University (Dec 2024)</li>
         </ul>
     </section>
 
     <section id="volunteering">
-        <h2>Volunteering</h2>
+        <h2>Volunteering & Leadership</h2>
         <ul>
-            <li>Court Appointed Special Advocate – CASA (03/2025 – Present)</li>
-            <li>Member, Board of Directors – Midwest Measurement Society (01/2025 – Present)</li>
-            <li>Petro Pro – OERB (03/2019 – Present)</li>
+            <li>Court Appointed Special Advocate – CASA (2025–Present)</li>
+            <li>Board of Directors – Midwest Measurement Society (2025–Present)</li>
+            <li>Petro Pro – OERB (2019+ years)</li>
         </ul>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Phone: (405) 226-3534</p>
-        <p>Email: Steven_Parks@outlook.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/steven-parks/" target="_blank">linkedin.com/in/steven-parks</a></p>
-    </section>
-
     <footer>
-        <p>&copy; 2025 Steven Parks. All rights reserved.</p>
+        © 2025 Steven Parks · <a href="https://saparks10.github.io" style="color:white;">https://saparks10.github.io</a>
     </footer>
 
 </body>
