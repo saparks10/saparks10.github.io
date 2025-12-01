@@ -27,7 +27,6 @@
         footer {text-align:center; padding:2.5rem; background:#0d47a1; color:white; margin-top:4rem;}
         @media (max-width:768px) {.print-btn {position:static; margin:1rem auto; display:block; width:200px;}}
 
-        /* Print-specific styles — includes ALL content, with smart page breaks */
         @media print {
             body {background:white; color:black; font-size:10pt; line-height:1.4;}
             nav, .print-btn {display:none !important;}
@@ -49,7 +48,6 @@
 </head>
 <body>
 
-    <!-- Print Button – always visible on screen -->
     <button onclick="window.print()" class="print-btn">Print / Save as PDF</button>
 
     <header>
@@ -144,18 +142,34 @@
         <div class="project">
             <h3>SAP Work Order Prioritization Agent for Field Operators</h3>
             <p>Field operators simply ask the agent for their work orders. It pulls live SAP data, intelligently prioritizes by fastest route, highest production impact, regulatory deadlines, etc., then instantly generates a scannable QR code that opens the optimal route in Google Maps. Operators can tweak the plan anytime and get a new QR in seconds.</p>
-
             <div class="step"><strong>Step 1</strong> – Operator queries their open work orders</div>
             <img src="sap1.png" alt="SAP Agent – Query">
-
             <div class="step"><strong>Step 2</strong> – Agent shows prioritized list with reasoning</div>
             <img src="sap2.png" alt="SAP Agent – Prioritized List">
-
             <div class="step"><strong>Step 3</strong> – Route optimization complete</div>
             <img src="sap3.png" alt="SAP Agent – Route">
-
             <div class="step"><strong>Step 4</strong> – QR code generated → scan and go</div>
             <img src="sap4.png" alt="SAP Agent – QR Code">
+        </div>
+
+        <div class="project">
+            <h3>Query Quiver – Streamlit Dashboard for Measurement Analysts</h3>
+            <p>Analysts run the same Snowflake queries every week/month but constantly have to edit dates, well names, meter IDs, etc. Query Quiver centralizes every team member’s proven queries in one place, makes them discoverable to the entire team (most analysts didn’t know what others were running), and replaces manual editing with simple dropdowns and date pickers. Users select a query, adjust parameters, see the exact SQL that will run, execute it, view results, download as CSV, and copy the final query if they prefer to run it directly in Snowflake. Saves hours per analyst per week and eliminates copy-paste errors.</p>
+
+            <div class="step"><strong>1</strong> – Main dashboard showing all queries in the “Quiver”</div>
+            <img src="query1.png" alt="Query Quiver – Dashboard">
+
+            <div class="step"><strong>2</strong> – Configuring parameters with dropdowns and date pickers</div>
+            <img src="query2.png" alt="Query Quiver – Configuration">
+
+            <div class="step"><strong>3</strong> – Live preview of the exact SQL template</div>
+            <img src="query3.png" alt="Query Quiver – SQL Preview">
+
+            <div class="step"><strong>4</strong> – Query results with one-click CSV download</div>
+            <img src="query4.png" alt="Query Quiver – Results & Download">
+
+            <div class="step"><strong>5</strong> – Final executed query (ready to copy/paste into Snowflake)</div>
+            <img src="query5.png" alt="Query Quiver – Executed Query">
         </div>
 
         <div class="project">
@@ -172,7 +186,7 @@
 
         <div class="project">
             <h3>Frac Sand Detection and Auto-Dump System</h3>
-            <p>Prior to this system, sand detection relied on manual methods like handheld flir cameras, or shutting down wells for visual inspections—often catching issues too late, after production equipment was filled with sand, leading to costly downtime, vessel cleanouts, and equipment damage or replacement. I designed this innovative system to detect sand in real-time and automatically manage it, starting with proven detection and followed by an integrated auto-dump mechanism to divert sand before it causes harm. Implemented in my business unit, it delivered an estimated $2 million in annual savings by reducing manual labor for flowback operations and minimizing maintenance and equipment failures. Now scaling enterprise-wide with anticipated savings of $20 million per year.</p>
+            <p>Prior to this system, sand detection relied on manual methods like handheld flares, cameras, or shutting down wells for visual inspections—often catching issues too late, after production equipment was filled with sand, leading to costly downtime, vessel cleanouts, and equipment damage or replacement. I designed this innovative system to detect sand in real-time and automatically manage it, starting with proven detection and followed by an integrated auto-dump mechanism to divert sand before it causes harm. Implemented in my business unit, it delivered an estimated $2 million in annual savings by reducing manual labor for throwback operations and minimizing maintenance and equipment failures. Now scaling enterprise-wide with anticipated savings of $20 million per year.</p>
 
             <div class="step"><strong>Live Data and Adjustable Set Points</strong></div>
             <p>This screenshot shows real-time data from the system, including sensor readings and operator-configurable set points for thresholds like density or frequency triggers. Operators can fine-tune these on the fly to adapt to varying well conditions, ensuring accurate detection of sand ingress.</p>
