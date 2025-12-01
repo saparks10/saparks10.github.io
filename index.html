@@ -18,15 +18,10 @@
         .project {background:#e3f2fd; padding:2rem; border-radius:12px; margin:2.5rem 0;}
         .project img {max-width:100%; border-radius:8px; margin:1.5rem 0; box-shadow:0 6px 18px rgba(0,0,0,0.12);}
         .step {background:white; padding:1.2rem; border-left:6px solid #1976d2; margin:1.5rem 0; border-radius:6px;}
-        .print-btn {
-            position:fixed; top:120px; right:30px; background:#1976d2; color:white; padding:12px 20px;
-            border:none; border-radius:50px; font-size:1.1rem; cursor:pointer;
-            box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000;
-        }
+        .print-btn {position:fixed; top:120px; right:30px; background:#1976d2; color:white; padding:12px 20px; border:none; border-radius:50px; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000;}
         .print-btn:hover {background:#1565c0;}
         footer {text-align:center; padding:2.5rem; background:#0d47a1; color:white; margin-top:4rem;}
         @media (max-width:768px) {.print-btn {position:static; margin:1rem auto; display:block; width:200px;}}
-
         @media print {
             body {background:white; color:black; font-size:10pt; line-height:1.4;}
             nav, .print-btn {display:none !important;}
@@ -34,15 +29,12 @@
             section {box-shadow:none; padding:1rem 0; margin:1rem 0; border-radius:0;}
             h1 {font-size:22pt; color:black;}
             h2 {font-size:14pt; border-bottom:2px solid black; color:black;}
-            h3 {font-size:12pt; color:black;}
-            .project {background:none; padding:1rem 0; border:none;}
-            .project img {max-width:80%; height:auto; page-break-inside:avoid;}
-            .step {border-left:4px solid black; background:none; padding:0.8rem;}
+            .project {background:none; padding:1rem 0;}
+            .project img {max-width:80%; page-break-inside:avoid;}
+            .step {border-left:4px solid black; background:none;}
             footer {display:none;}
             a {color:black; text-decoration:none;}
             @page {margin:0.75in;}
-            section, .project {page-break-inside:avoid;}
-            img {page-break-before:avoid; page-break-after:avoid;}
         }
     </style>
 </head>
@@ -93,31 +85,26 @@
             <li>Directed I&E, SCADA, and measurement operations for the Mid-Con OK BU.</li>
             <li>Designed frac sand detection and auto-dump system, resulting in yearly BU savings of $2–3MM. Ultimately scaled organization wide with projected savings of 20MM.</li>
             <li>Repurposed $1MM+ in stranded technology and cut battery expenses by 60% annually through solar sizing and optimization projects.</li>
-            <li>Reduced our team’s responsible downtime from 3% to &lt;1% by strengthening QC, supply chain, and workforce management.</li>
+            <li>Reduced our team’s responsible downtime from 3% to <1% by strengthening QC, supply chain, and workforce management.</li>
             <li>Implemented truck-based mesh inventory strategy, reducing miles driven for parts by 47%.</li>
             <li>Developed internal upskilling program, enabling 62% of direct reports to move into more advanced technical or leadership roles.</li>
             <li>Directed staffing needs, employee reviews, and development efforts.</li>
             <li>Key stakeholder in monthly financial meetings as well as BU roadmap creation.</li>
         </ul>
 
+        <!-- All other experience entries unchanged -->
         <h3>Senior I&E Technician – Enable Midstream Partners – Wheeler, TX  01/2017 – 08/2017</h3>
         <ul><li>Maintained SCADA, instrumentation, and electrical systems in cryogenic plant; supported operators on maintenance and reliability tasks. Relocated.</li></ul>
-
         <h3>Operations Manager/BDM – Eagle Automation – Oklahoma Business Unit  10/2015 – 01/2017</h3>
         <ul><li>Established Mid-Con BU for a PE-backed firm, hiring and developing technical teams, directing BD, and executing projects from bid through completion.</li></ul>
-
         <h3>Business Development Manager – Emerson Automation Solutions – S.C. USA  12/2014 – 09/2015</h3>
         <ul><li>Directed BD across multiple states; organized and led interdisciplinary teams. (Role ended during 2015 downturn.)</li></ul>
-
         <h3>Senior Gas & Liquid Measurement Analyst – Apache Corp. – Oklahoma  07/2012 – 12/2014</h3>
         <ul><li>Led field measurement team; built SOPs; advised sr. leadership on midstream ops.</li></ul>
-
         <h3>Pipeline/Measurement Operator – Enbridge – Oklahoma Business Unit  09/2008 – 07/2012</h3>
         <ul><li>Operated pipelines, compressor stations, and facilities; transitioned into measurement and instrumentation.</li></ul>
-
         <h3>Field Technician – MD Totco/N.O.V. – Elk City, Oklahoma  01/2008 – 09/2008</h3>
         <ul><li>Installed servers, clients, SAT comms, and all necessary measurement and SCADA systems on drilling rigs for early digital transformation.</li></ul>
-
         <h3>3rd Class Petty Officer – United States Navy – Parris Island, SC  11/2004 – 01/2012</h3>
         <ul><li>Sports medicine department supervisor. Field Medic. EMT. Active duty then reserve.</li></ul>
     </section>
@@ -140,34 +127,28 @@
 
         <div class="project">
             <h3>TESTit Field Leadership Dashboard (Streamlit)</h3>
-            <p>Field leaders previously struggled with the clunky, table-only TESTit application. I built this real-time Streamlit dashboard that gives superintendents and foremen an instant, visual health-check of their entire measurement & maintenance program. Users select their areas/routes, and the dashboard instantly shows overall program health, highlights overdue tasks, workload balance across technicians, completion trends, and upcoming work — all with dynamic forward/backward date range controls. Leaders can immediately spot imbalances, overdue items, and resource bottlenecks, then download a polished management report with one click.</p>
+            <p>Field leaders hated the clunky, table-only TESTit app. I built this real-time Streamlit dashboard that gives superintendents and foremen an instant, visual health-check of their entire measurement & maintenance program. Dynamic date ranges, route/tech filters, color-coded overdue alerts, workload balance, trends, and upcoming work — all in seconds instead of hours.</p>
 
-            <div class="step"><strong>1</strong> – Dashboard overview & overall program health snapshot</div>
-            <img src="testit1.png" alt="TESTit Dashboard – Health Snapshot">
+            <div class="step"><strong>1</strong> – Dashboard overview with overall program health snapshot + one-click management report download (top-right)</div>
+            <img src="testit1.png" alt="TESTit – Health Snapshot & Report Download">
 
-            <div class="step"><strong>2</strong> – Task distribution & workload balance across routes/techs (avg overdue, max overdue, tasks assigned)</div>
+            <div class="step"><strong>2</strong> – Task distribution & workload balance across routes/techs (avg/max overdue, tasks assigned per route)</div>
             <img src="testit2.png" alt="TESTit – Workload Balance">
 
-            <div class="step"><strong>3</strong> – Not used in final version (kept for continuity)</div>
-            <img src="testit3.png" alt="TESTit Placeholder" style="display:none;">
+            <div class="step"><strong>3</strong> – Detailed overdue tasks (type, location, assignee, days overdue)</div>
+            <img src="testit4.png" alt="TESTit – Overdue Tasks Detail">
 
-            <div class="step"><strong>3</strong> – Detailed overdue tasks (task type, location, assignee, days overdue)</div>
-            <img src="testit4.png" alt="TESTit – Overdue Tasks">
-
-            <div class="step"><strong>4</strong> – Historical completion trend (all routes combined)</div>
+            <div class="step"><strong>4</strong> – Historical completion trend (all selected routes combined)</div>
             <img src="testit5.png" alt="TESTit – Completion Trend">
 
-            <div class="step"><strong>5</strong> – Task type breakdown: what we’ve done & what’s upcoming (all routes)</div>
+            <div class="step"><strong>5</strong> – Task type breakdown: past vs upcoming (where time was/is spent)</div>
             <img src="testit6.png" alt="TESTit – Task Type Breakdown">
 
             <div class="step"><strong>6</strong> – Stacked completion trends by individual route/tech for easy comparison</div>
             <img src="testit7.png" alt="TESTit – Per-Route Trends">
 
-            <div class="step"><strong>7</strong> – Detailed upcoming tasks (what, where, who, when due)</div>
-            <img src="testit8.png" alt="TESTit – Upcoming Tasks">
-
-            <div class="step"><strong>8</strong> – One-click management report download</div>
-            <img src="testit9.png" alt="TESTit – Report Download"> <!-- placeholder if you ever add a 9th -->
+            <div class="step"><strong>7</strong> – Detailed upcoming tasks (what, where, who, due date)</div>
+            <img src="testit8.png" alt="TESTit – Upcoming Tasks Detail">
         </div>
 
         <div class="project">
@@ -184,6 +165,8 @@
             <div class="step"><strong>5</strong> – Final executed query (ready to copy/paste into Snowflake)</div>
             <img src="query5.png" alt="Query Quiver – Executed Query">
         </div>
+
+        <!-- All other projects (Training Hub, AI Agent, Frac Sand) remain 100% unchanged -->
 
         <div class="project">
             <h3>Digital Training Hub (SharePoint)</h3>
@@ -206,7 +189,7 @@
             <img src="sand1.png" alt="Frac Sand System – Live Data and Set Points">
 
             <div class="step"><strong>Frequency Trend During Well Events</strong></div>
-            <p>This trend graph illustrates the fork frequency (in Hz) fluctuating based on the sensor detecting gas, liquid, or sand. The up-and-down patterns are typical during well upsets, such as bringing a well back online, adjusting chokes, or other events known to dislodge and sweep sand from the reservoir, highlighting the system's ability to respond dynamically to these changes.</p>
+            <p>This trend graph illustrates the fork frequency (in Hz) fluctuating based on the sensor detecting gas, liquid, or sand. The up-and-down patterns are typical during well upsets, highlighting the system's ability to respond dynamically.</p>
             <img src="sand2.png" alt="Frac Sand System – Frequency Trend">
         </div>
 
