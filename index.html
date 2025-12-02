@@ -18,9 +18,10 @@
         .project {background:#e3f2fd; padding:2rem; border-radius:12px; margin:2.5rem 0;}
         .project img {max-width:100%; border-radius:8px; margin:1.5rem 0; box-shadow:0 6px 18px rgba(0,0,0,0.12);}
         .step {background:white; padding:1.2rem; border-left:6px solid #1976d2; margin:1.5rem 0; border-radius:6px;}
-        .article {background:#f0f8ff; padding:1.5rem; border-radius:8px; margin:1.5rem 0; border-left:4px solid #1976d2;}
-        .article h4 {margin-top:0; color:#0d47a1;}
-        .article p {margin-bottom:1rem;}
+        .article {background:#f0f8ff; padding:1.8rem; border-radius:10px; margin:1.8rem 0; border-left:5px solid #1976d2; transition:transform 0.2s;}
+        .article:hover {transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+        .article h4 {margin:0 0 0.8rem 0; color:#0d47a1; font-size:1.25rem;}
+        .article p {margin:0.5rem 0; color:#444;}
         .print-btn {position:fixed; top:120px; right:30px; background:#1976d2; color:white; padding:12px 20px; border:none; border-radius:50px; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000;}
         .print-btn:hover {background:#1565c0;}
         footer {text-align:center; padding:2.5rem; background:#0d47a1; color:white; margin-top:4rem;}
@@ -32,15 +33,13 @@
             section {box-shadow:none; padding:1rem 0; margin:1rem 0; border-radius:0;}
             h1 {font-size:22pt; color:black;}
             h2 {font-size:14pt; border-bottom:2px solid black; color:black;}
-            h3 {font-size:12pt; color:black;}
             .project, .article {background:none; padding:1rem 0; border:none;}
             .project img {max-width:80%; page-break-inside:avoid;}
-            .step {border-left:4px solid black; background:none;}
+            .step, .article {border-left:4px solid black; background:none;}
+            .article:hover {transform:none;}
             footer {display:none;}
             a {color:black; text-decoration:none;}
             @page {margin:0.75in;}
-            section, .project, .article {page-break-inside:avoid;}
-            img {page-break-before:avoid; page-break-after:avoid;}
         }
     </style>
 </head>
@@ -90,7 +89,7 @@
         <h3>Technical Services Foreman – Devon Energy – Weatherford, OK  08/2017 – 12/2023</h3>
         <ul>
             <li>Directed I&E, SCADA, and measurement operations for the Mid-Con OK BU.</li>
-            <li>Designed frac sand detection and auto-dump system, resulting in yearly BU savings of $2-3MM. Ultimately scaled organization wide with projected savings of 20MM.</li>
+            <li>Designed frac sand detection and auto-dump system, resulting in yearly BU savings of $2–3MM. Ultimately scaled organization wide with projected savings of 20MM.</li>
             <li>Repurposed $1MM+ in stranded technology and cut battery expenses by 60% annually through solar sizing and optimization projects.</li>
             <li>Reduced our team’s responsible downtime from 3% to <1% by strengthening QC, supply chain, and workforce management.</li>
             <li>Implemented truck-based mesh inventory strategy, reducing miles driven for parts by 47%.</li>
@@ -100,23 +99,157 @@
         </ul>
 
         <h3>Senior I&E Technician – Enable Midstream Partners – Wheeler, TX  01/2017 – 08/2017</h3>
-        <ul>
-            <li>Maintained SCADA, instrumentation, and electrical systems in cryogenic plant; supported operators on maintenance and reliability tasks. Relocated.</li>
-        </ul>
+        <ul><li>Maintained SCADA, instrumentation, and electrical systems in cryogenic plant; supported operators on maintenance and reliability tasks. Relocated.</li></ul>
 
-        <h3>Operations Manager/BDM – Eagle Automation – Oklahoma Business Unit</h3>
-        <p>10/2015 – 01/2017</p>
-        <ul>
-            <li>Established Mid-Con BU for a PE-backed firm, hiring and developing technical teams, directing BD, and executing projects from bid through completion.</li>
-        </ul>
+        <h3>Operations Manager/BDM – Eagle Automation – Oklahoma Business Unit  10/2015 – 01/2017</h3>
+        <ul><li>Established Mid-Con BU for a PE-backed firm, hiring and developing technical teams, directing BD, and executing projects from bid through completion.</li></ul>
 
-        <h3>Business Development Manager – Emerson Automation Solutions – S.C. USA</h3>
-        <p>12/2014 – 09/2015</p>
-        <ul>
-            <li>Directed BD across multiple states; organized and led interdisciplinary teams. (Role ended during 2015 downturn.)</li>
-        </ul>
+        <h3>Business Development Manager – Emerson Automation Solutions – S.C. USA  12/2014 – 09/2015</h3>
+        <ul><li>Directed BD across multiple states; organized and led interdisciplinary teams. (Role ended during 2015 downturn.)</li></ul>
 
-        <h3>Senior Gas & Liquid Measurement Analyst – Apache Corp. – Oklahoma</h3>
-        <p>07/2012 – 12/2014</p>
+        <h3>Senior Gas & Liquid Measurement Analyst – Apache Corp. – Oklahoma  07/2012 – 12/2014</h3>
+        <ul><li>Led field measurement team; built SOPs; advised sr. leadership on midstream ops.</li></ul>
+
+        <h3>Pipeline/Measurement Operator – Enbridge – Oklahoma Business Unit  09/2008 – 07/2012</h3>
+        <ul><li>Operated pipelines, compressor stations, and facilities; transitioned into measurement and instrumentation.</li></ul>
+
+        <h3>Field Technician – MD Totco/N.O.V. – Elk City, Oklahoma  01/2008 – 09/2008</h3>
+        <ul><li>Installed servers, clients, SAT comms, and all necessary measurement and SCADA systems on drilling rigs for early digital transformation.</li></ul>
+
+        <h3>3rd Class Petty Officer – United States Navy – Parris Island, SC  11/2004 – 01/2012</h3>
+        <ul><li>Sports medicine department supervisor. Field Medic. EMT. Active duty then reserve.</li></ul>
+    </section>
+
+    <section id="projects">
+        <h2>Tools & AI Agents I've Built</h2>
+
+        <div class="project">
+            <h3>SAP Work Order Prioritization Agent for Field Operators</h3>
+            <p>Field operators simply ask the agent for their work orders. It pulls live SAP data, intelligently prioritizes by fastest route, highest production impact, regulatory deadlines, etc., then instantly generates a scannable QR code that opens the optimal route in Google Maps. Operators can tweak the plan anytime and get a new QR in seconds.</p>
+            <div class="step"><strong>Step 1</strong> – Operator queries their open work orders</div>
+            <img src="sap1.png" alt="SAP Agent – Query">
+            <div class="step"><strong>Step 2</strong> – Agent shows prioritized list with reasoning</div>
+            <img src="sap2.png" alt="SAP Agent – Prioritized List">
+            <div class="step"><strong>Step 3</strong> – Route optimization complete</div>
+            <img src="sap3.png" alt="SAP Agent – Route">
+            <div class="step"><strong>Step 4</strong> – QR code generated → scan and go</div>
+            <img src="sap4.png" alt="SAP Agent – QR Code">
+        </div>
+
+        <div class="project">
+            <h3>TESTit Field Leadership Dashboard (Streamlit)</h3>
+            <p>Field leaders hated the clunky, table-only TESTit app. I built this real-time Streamlit dashboard that gives superintendents and foremen an instant, visual health-check of their entire measurement & maintenance program. Dynamic date ranges, route/tech filters, color-coded overdue alerts, workload balance, trends, and upcoming work — all in seconds instead of hours.</p>
+
+            <div class="step"><strong>1</strong> – Dashboard overview with overall program health snapshot + one-click management report download (top-right)</div>
+            <img src="testit1.png" alt="TESTit – Health Snapshot & Report Download">
+
+            <div class="step"><strong>2</strong> – Task distribution & workload balance across routes/techs (avg/max overdue, tasks assigned per route)</div>
+            <img src="testit2.png" alt="TESTit – Workload Balance">
+
+            <div class="step"><strong>3</strong> – Detailed overdue tasks (type, location, assignee, days overdue)</div>
+            <img src="testit4.png" alt="TESTit – Overdue Tasks Detail">
+
+            <div class="step"><strong>4</strong> – Historical completion trend (all selected routes combined)</div>
+            <img src="testit5.png" alt="TESTit – Completion Trend">
+
+            <div class="step"><strong>5</strong> – Task type breakdown: past vs upcoming (where time was/is spent)</div>
+            <img src="testit6.png" alt="TESTit – Task Type Breakdown">
+
+            <div class="step"><strong>6</strong> – Stacked completion trends by individual route/tech for easy comparison</div>
+            <img src="testit7.png" alt="TESTit – Per-Route Trends">
+
+            <div class="step"><strong>7</strong> – Detailed upcoming tasks (what, where, who, due date)</div>
+            <img src="testit8.png" alt="TESTit – Upcoming Tasks Detail">
+        </div>
+
+        <div class="project">
+            <h3>Query Quiver – Streamlit Dashboard for Measurement Analysts</h3>
+            <p>Analysts run the same Snowflake queries every week/month but constantly have to edit dates, well names, meter IDs, etc. Query Quiver centralizes every team member’s proven queries in one place, makes them discoverable to the entire team (most analysts didn’t know what others were running), and replaces manual editing with simple dropdowns and date pickers. Users select a query, adjust parameters, see the exact SQL that will run, execute it, view results, download as CSV, and copy the final query if they prefer to run it directly in Snowflake. Saves hours per analyst per week and eliminates copy-paste errors.</p>
+            <div class="step"><strong>1</strong> – Main dashboard showing all queries in the “Quiver”</div>
+            <img src="query1.png" alt="Query Quiver – Dashboard">
+            <div class="step"><strong>2</strong> – Configuring parameters with dropdowns and date pickers</div>
+            <img src="query2.png" alt="Query Quiver – Configuration">
+            <div class="step"><strong>3</strong> – Live preview of the exact SQL template</div>
+            <img src="query3.png" alt="Query Quiver – SQL Preview">
+            <div class="step"><strong>4</strong> – Query results with one-click CSV download</div>
+            <img src="query4.png" alt="Query Quiver – Results & Download">
+            <div class="step"><strong>5</strong> – Final executed query (ready to copy/paste into Snowflake)</div>
+            <img src="query5.png" alt="Query Quiver – Executed Query">
+        </div>
+
+        <div class="project">
+            <h3>Digital Training Hub (SharePoint)</h3>
+            <p>One-stop library with hundreds of standards, videos, PowerPoints, SOPs, and training materials for measurement and operations teams. Fully searchable and kept current.</p>
+            <img src="Training Hub.png" alt="Digital Training Hub">
+        </div>
+
+        <div class="project">
+            <h3>Training & Analysis AI Agent</h3>
+            <p>Lives alongside the training hub. Users can ask questions, upload gas analyses or charts, and the agent instantly diagnoses issues (contaminated samples, meter problems, etc.) and explains fixes in plain language.</p>
+            <img src="Training Agent.png" alt="Training AI Agent">
+        </div>
+
+        <div class="project">
+            <h3>Frac Sand Detection and Auto-Dump System</h3>
+            <p>Prior to this system, sand detection relied on manual methods like handheld FLIR cameras, or shutting down wells for visual inspections—often catching issues too late, after production equipment was filled with sand, leading to costly downtime, vessel cleanouts, and equipment damage or replacement. I designed this innovative system to detect sand in real-time and automatically manage it, starting with proven detection and followed by an integrated auto-dump mechanism to divert sand before it causes harm during flowback and normal operations. Implemented in my business unit, it delivered an estimated $2 million in annual savings by reducing manual labor for flowback operations and minimizing maintenance and equipment failures. Now scaling enterprise-wide with anticipated savings of $20 million per year.</p>
+
+            <div class="step"><strong>Live Data and Adjustable Set Points</strong></div>
+            <p>This screenshot shows real-time data from the system, including sensor readings and operator-configurable set points for thresholds like density or frequency triggers. Operators can fine-tune these on the fly to adapt to varying well conditions, ensuring accurate detection of sand ingress.</p>
+            <img src="sand1.png" alt="Frac Sand System – Live Data and Set Points">
+
+            <div class="step"><strong>Frequency Trend During Well Events</strong></div>
+            <p>This trend graph illustrates the fork frequency (in Hz) fluctuating based on the sensor detecting gas, liquid, or sand. The up-and-down patterns are typical during well upsets, highlighting the system's ability to respond dynamically.</p>
+            <img src="sand2.png" alt="Frac Sand System – Frequency Trend">
+        </div>
+
+        <p style="text-align:center; font-style:italic; margin-top:3rem;">
+            More tools and agents (solar/battery optimizer, compliance dashboards, etc.) available on request.
+        </p>
+    </section>
+
+    <!-- NEW ARTICLES SECTION -->
+    <section id="articles">
+        <h2>Published Articles on LinkedIn</h2>
+
+        <div class="article">
+            <h4>Stop Measuring Effort — Start Measuring Value: Building a Culture That Actually Delivers</h4>
+            <p>How oil & gas leaders can shift from rewarding activity to rewarding outcomes — and why most “busy” teams are actually destroying value.</p>
+            <p><a href="https://www.linkedin.com/pulse/stop-measuring-effort-start-value-building-culture-actually-parks-8tdzc/" target="_blank">Read on LinkedIn →</a></p>
+        </div>
+
+        <div class="article">
+            <h4>The Importance of Enterprise Architecture in Oil & Gas Data Management</h4>
+            <p>Why treating data as a strategic asset — not a byproduct — is the difference between surviving and leading in the digital era of energy.</p>
+            <p><a href="https://www.linkedin.com/pulse/importance-enterprise-architecture-oil-gas-data-steven-parks-lgx8c/" target="_blank">Read on LinkedIn →</a></p>
+        </div>
+
+        <div class="article">
+            <h4>Precision Matters: Understanding Accuracy vs. Uncertainty in Measurement</h4>
+            <p>A practical breakdown of why “close enough” costs millions in hydrocarbons — and how to speak the language of uncertainty with confidence.</p>
+            <p><a href="https://www.linkedin.com/pulse/precision-matters-understanding-accuracy-uncertainty-steven-parks-paryc/" target="_blank">Read on LinkedIn →</a></p>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
         <ul>
-            <li>L
+            <li>05/2025 M.B.A., Emporia State University</li>
+            <li>12/2024 M.S. Information Technology, Emporia State University</li>
+        </ul>
+    </section>
+
+    <section id="volunteering">
+        <h2>Volunteering & Leadership</h2>
+        <ul>
+            <li>Court Appointed Special Advocate – CASA (03/2025 – Present)</li>
+            <li>Member, Board of Directors – Midwest Measurement Society (01/2025 – Present)</li>
+            <li>Petro Pro – OERB (03/2019 – Present)</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Steven Parks – Portfolio & Live Tools: <a href="https://saparks10.github.io" style="color:white;">https://saparks10.github.io</a></p>
+    </footer>
+
+</body>
+</html>
