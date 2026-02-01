@@ -247,6 +247,13 @@ function App() {
       contact: 'Data Platforms',
       capabilities: ['Notebooks', 'ML workflows', 'Lakehouse storage'],
     },
+    {
+      title: 'Sigma',
+      summary: 'Business intelligence and data exploration platform.',
+      bestFor: 'BI analytics, self-service reporting',
+      contact: 'Analytics CoE',
+      capabilities: ['Interactive dashboards', 'Data exploration', 'Self-service analytics'],
+    },
   ]
 
   const governance = [
@@ -388,7 +395,6 @@ function App() {
                 {tab}
               </button>
             ))}
-            <button className="btn btn-ghost">Submit a Request</button>
           </div>
         </nav>
 
@@ -412,7 +418,7 @@ function App() {
           </div>
         )}
 
-        {activeTab !== 'In The News' && (
+        {activeTab !== 'In The News' && activeTab !== 'ChatDVN' && (
           <div className="page-hero">
             <p className="eyebrow">AI Reservoir</p>
             <h1>{activeTab}</h1>
@@ -429,8 +435,6 @@ function App() {
                 'Policies, risk guidance, and approval workflows.'}
               {activeTab === 'Idea Portal' &&
                 'Submit, discuss, and vote on AI ideas.'}
-              {activeTab === 'ChatDVN' &&
-                'Your secure AI workspace for agents, projects, and prompts.'}
               {activeTab === 'Blog' &&
                 'Insights and articles from Devon AI and trusted sources.'}
             </p>
@@ -575,7 +579,7 @@ function App() {
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
                   <span className="meta">Best for: {item.bestFor}</span>
-                  <span className="meta">POC: {item.contact}</span>
+                  <span className="meta">Point of contact:</span>
                   <ul className="card-list">
                     {item.capabilities.map((cap) => (
                       <li key={cap}>{cap}</li>
@@ -661,10 +665,12 @@ function App() {
                   guardrails.
                 </p>
                 <div className="hero-actions">
-                  <a className="btn btn-primary" href="https://chat.dvn.com">
+                  <a className="btn btn-primary" href="https://chat.dvn.com" target="_blank" rel="noopener noreferrer">
                     Open ChatDVN
                   </a>
-                  <button className="btn btn-secondary">View usage guide</button>
+                  <a className="btn btn-secondary" href="https://wd5.myworkday.com/devonenergy/learning/course/1398e7e68a071001f851a75b4b470000?type=9882927d138b100019b928e75843018d" target="_blank" rel="noopener noreferrer">
+                    ChatDVN Fundamentals Training
+                  </a>
                 </div>
               </div>
               <div className="chatdvn-logo-wrap">
