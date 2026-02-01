@@ -1,83 +1,363 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const offerings = [
+  const tabs = [
+    'In The News',
+    'R&D',
+    'Training',
+    'The Art of Possible',
+    'Technology Tool Box',
+    'Governance',
+    'Idea Portal',
+    'ChatDVN',
+    'Blog',
+  ]
+  const [activeTab, setActiveTab] = useState(tabs[0])
+
+  const newsItems = [
     {
-      title: 'Model & Platform Updates',
-      summary: 'New model releases, benchmark shifts, and platform notices.',
+      title: 'Lakehouse momentum accelerates in enterprise AI',
+      summary: 'What platform shifts mean for AI workloads and analytics teams.',
+      source: 'Databricks',
+      date: 'This week',
+      tag: 'Platforms',
+      link: 'Read update',
+      url: 'https://www.databricks.com/solutions/data-lakehouse',
     },
     {
-      title: 'Approved AI Tools',
-      summary: 'Secure copilots, agent platforms, and automation services.',
+      title: 'Data Cloud readiness for AI teams',
+      summary: 'How trusted data sharing supports AI governance and scale.',
+      source: 'Snowflake',
+      date: '2 days ago',
+      tag: 'Data',
+      link: 'View brief',
+      url: 'https://www.snowflake.com/en/data-cloud/enterprise-ready/',
     },
     {
-      title: 'Enablement & Training',
-      summary: 'Role-based labs, AI safety, and production readiness.',
+      title: 'Visual analytics for operational decisions',
+      summary: 'Interactive analysis and geospatial workflows in practice.',
+      source: 'Spotfire',
+      date: 'Yesterday',
+      tag: 'Analytics',
+      link: 'Open summary',
+      url: 'https://www.spotfire.com/',
     },
     {
-      title: 'Solution Playbooks',
-      summary: 'Reusable patterns for analytics, copilots, and workflows.',
+      title: 'Process automation accelerates AI adoption',
+      summary: 'Automate workflows with triggers, approvals, and RPA.',
+      source: 'Power Automate',
+      date: 'Today',
+      tag: 'Automation',
+      link: 'Explore',
+      url: 'https://learn.microsoft.com/en-us/power-automate/',
     },
     {
-      title: 'Idea Intake & Scoring',
-      summary: 'Submit opportunities, route approvals, and track ROI.',
+      title: 'Dashboards for AI performance and KPIs',
+      summary: 'Monitor adoption, quality, and value with operational reporting.',
+      source: 'Power BI',
+      date: 'Today',
+      tag: 'Reporting',
+      link: 'View guide',
+      url: 'https://learn.microsoft.com/en-us/power-bi/power-bi-overview',
     },
     {
-      title: 'Governance & Risk',
-      summary: 'Model risk tiers, privacy controls, and safety guardrails.',
+      title: 'Responsible AI: safety and governance updates',
+      summary: 'New guidance and best practices for AI deployment.',
+      source: 'Anthropic',
+      date: 'This week',
+      tag: 'Governance',
+      link: 'Read report',
+      url: 'https://www.anthropic.com/news',
     },
   ]
 
-  const approach = [
+  const newsSources = [
+    { name: 'Power BI', url: 'https://learn.microsoft.com/en-us/power-bi/' },
+    { name: 'Power Automate', url: 'https://learn.microsoft.com/en-us/power-automate/' },
+    { name: 'Databricks', url: 'https://www.databricks.com/' },
+    { name: 'Snowflake', url: 'https://www.snowflake.com/' },
+    { name: 'Spotfire', url: 'https://www.spotfire.com/' },
+    { name: 'Anthropic', url: 'https://www.anthropic.com/news' },
+  ]
+
+  const rndItems = [
     {
-      title: 'Strategy',
-      summary: 'Focus on high-value, safe AI opportunities across assets.',
+      title: 'Agent orchestration',
+      summary: 'Multi-agent workflows with audit trails and guardrails.',
+      status: 'Pilot',
+      horizon: '6 weeks',
+      owner: 'ETT',
     },
     {
-      title: 'Solutions',
-      summary: 'Build repeatable playbooks and tools that scale.',
+      title: 'Claude + coworking agents',
+      summary: 'Exploring Claude-based coworker workflows for knowledge teams.',
+      status: 'Research',
+      horizon: 'Quarter',
+      owner: 'ETT',
     },
     {
-      title: 'Launch Hub',
-      summary: 'Enable teams with training, support, and clear guardrails.',
+      title: 'Knowledge graph expansion',
+      summary: 'Connect data sources to improve retrieval accuracy.',
+      status: 'Research',
+      horizon: 'Quarter',
+      owner: 'ETT',
+    },
+    {
+      title: 'Field-first copilots',
+      summary: 'Low-bandwidth experiences and offline workflows.',
+      status: 'Design',
+      horizon: '8 weeks',
+      owner: 'ETT',
+    },
+    {
+      title: 'Ops anomaly fusion',
+      summary: 'Combine time-series + text signals for early warnings.',
+      status: 'Exploration',
+      horizon: 'Discovery',
+      owner: 'ETT',
+    },
+    {
+      title: 'Quantum computing use cases',
+      summary: 'Assessing optimization and simulation opportunities.',
+      status: 'Exploration',
+      horizon: 'Discovery',
+      owner: 'ETT',
     },
   ]
 
-  const highlights = [
+  const trainingItems = [
     {
-      title: 'Predictive analytics suite',
-      detail: 'Anomaly detection + forecasting for operations dashboards.',
+      title: 'AI Fundamentals',
+      summary: 'Core concepts, governance, and secure usage patterns.',
+      meta: '60 minutes',
+      level: 'Beginner',
+      provider: 'Enterprise AI',
     },
     {
-      title: 'Copilot for workflows',
-      detail: 'Summaries, drafting, and task automation for teams.',
+      title: 'Applied AI Track',
+      summary: 'Prompting, retrieval, and workflow automation labs.',
+      meta: '90 minutes',
+      level: 'Intermediate',
+      provider: 'Enterprise AI',
     },
     {
-      title: 'Document intelligence',
-      detail: 'Extract, classify, and search reports at scale.',
+      title: 'Builder Track',
+      summary: 'Hands-on labs for copilots, agents, and evaluation.',
+      meta: '4 modules',
+      level: 'Advanced',
+      provider: 'Enterprise AI',
+    },
+    {
+      title: 'Power BI for Analysts',
+      summary: 'Dashboards, modeling, and data storytelling.',
+      meta: '3 hours',
+      level: 'Intermediate',
+      provider: 'Microsoft Learn',
+    },
+    {
+      title: 'Power Automate Foundations',
+      summary: 'Build flows, approvals, and RPA basics.',
+      meta: '2 hours',
+      level: 'Beginner',
+      provider: 'Microsoft Learn',
+    },
+    {
+      title: 'Databricks for AI Teams',
+      summary: 'Lakehouse fundamentals and ML workflows.',
+      meta: '4 hours',
+      level: 'Intermediate',
+      provider: 'Databricks Academy',
     },
   ]
 
-  const insights = [
+  const artOfPossible = [
+    {
+      title: 'Maintenance triage automation',
+      summary: 'Reduce time to resolve with AI-guided workflows.',
+      impact: '18% faster triage',
+      owner: 'Operations',
+    },
+    {
+      title: 'Executive reporting assistant',
+      summary: 'Summarize KPIs, incidents, and highlights weekly.',
+      impact: '4 hrs saved/week',
+      owner: 'Finance',
+    },
+    {
+      title: 'Permit drafting accelerator',
+      summary: 'Speed up approvals with structured drafting templates.',
+      impact: '25% cycle time',
+      owner: 'Regulatory',
+    },
+    {
+      title: 'Well plan comparison bot',
+      summary: 'Compare offsets and recommend best-fit designs.',
+      impact: 'Higher plan quality',
+      owner: 'Engineering',
+    },
+    {
+      title: 'Safety briefing synthesis',
+      summary: 'Summarize incidents and generate safety actions.',
+      impact: 'Faster field updates',
+      owner: 'EHS',
+    },
+  ]
+
+  const toolbox = [
+    {
+      title: 'ChatDVN',
+      summary: 'Secure AI workspace with agents and prompt tools.',
+      bestFor: 'Knowledge work, summaries, Q&A',
+      contact: 'Enterprise AI team',
+      capabilities: ['Prebuilt agents', 'Custom agents', 'Project workspaces'],
+    },
+    {
+      title: 'Power BI',
+      summary: 'Interactive dashboards and data visualization.',
+      bestFor: 'KPIs, dashboards, data modeling',
+      contact: 'Analytics CoE',
+      capabilities: ['Reports + dashboards', 'DAX modeling', 'Share insights'],
+    },
+    {
+      title: 'Power Automate',
+      summary: 'Workflow automation with connectors and approvals.',
+      bestFor: 'Approvals, routing, RPA',
+      contact: 'Digital Ops',
+      capabilities: ['Cloud flows', 'Desktop flows', 'Connectors + triggers'],
+    },
+    {
+      title: 'Spotfire',
+      summary: 'Advanced visual analytics and geospatial insights.',
+      bestFor: 'Exploration, geo analysis',
+      contact: 'Tech Apps',
+      capabilities: ['Visual analytics', 'Geo mapping', 'Data science'],
+    },
+    {
+      title: 'Snowflake',
+      summary: 'Data Cloud for secure storage and sharing.',
+      bestFor: 'Data sharing, governed access',
+      contact: 'Data Office',
+      capabilities: ['Secure data sharing', 'Warehousing', 'Governed access'],
+    },
+    {
+      title: 'Databricks',
+      summary: 'Lakehouse platform for analytics and AI.',
+      bestFor: 'ML pipelines, notebooks',
+      contact: 'Data Platforms',
+      capabilities: ['Notebooks', 'ML workflows', 'Lakehouse storage'],
+    },
+  ]
+
+  const governance = [
+    {
+      title: 'Policy and acceptable use',
+      summary: 'Guidance for safe, compliant AI usage.',
+      owner: 'Governance',
+    },
+    {
+      title: 'Risk tiering',
+      summary: 'Evaluate impact, data sensitivity, and controls.',
+      owner: 'Risk',
+    },
+    {
+      title: 'Approval workflow',
+      summary: 'How to move from pilot to production.',
+      owner: 'Enterprise AI',
+    },
+    {
+      title: 'Data handling standards',
+      summary: 'PII, retention, and model input rules.',
+      owner: 'Security',
+    },
+  ]
+
+  const ideaPortal = [
+    {
+      title: 'Submit an idea',
+      summary: 'Propose and track AI opportunities.',
+      meta: 'Start a submission',
+    },
+    {
+      title: 'Browse ideas',
+      summary: 'Explore what teams are building across Devon.',
+      meta: 'See top voted',
+    },
+    {
+      title: 'Upvote and comment',
+      summary: 'Signal demand and improve submissions.',
+      meta: 'Join the discussion',
+    },
+  ]
+
+  const ideaList = [
+    {
+      title: 'Automated downtime alerts',
+      status: 'In review',
+      votes: 42,
+      comments: 9,
+      sponsor: 'Operations',
+    },
+    {
+      title: 'Production forecast copilot',
+      status: 'Pilot',
+      votes: 31,
+      comments: 6,
+      sponsor: 'Reservoir',
+    },
+    {
+      title: 'Document QA for land filings',
+      status: 'Backlog',
+      votes: 18,
+      comments: 4,
+      sponsor: 'Land',
+    },
+  ]
+
+  const chatDvn = [
+    {
+      title: 'Prebuilt agents',
+      summary: 'Domain-specific agents for common tasks.',
+      detail: 'Ops, finance, and compliance packs.',
+    },
+    {
+      title: 'Build your own',
+      summary: 'Create agents, projects, and reusable prompts.',
+      detail: 'Templates + shared libraries.',
+    },
+    {
+      title: 'Mobile access',
+      summary: 'Use ChatDVN securely on the go.',
+      detail: 'MFA + managed devices.',
+    },
+    {
+      title: 'Project workspaces',
+      summary: 'Keep prompts, files, and agents together.',
+      detail: 'Shareable across teams.',
+    },
+  ]
+
+  const blogItems = [
     {
       title: 'LLM safety patterns for enterprise teams',
       meta: 'Guide - 8 min read',
+      author: 'Devon AI',
     },
     {
       title: 'Model evaluation framework',
       meta: 'Framework - 10 min read',
+      author: 'ETT',
     },
     {
       title: 'AI platform roadmap',
       meta: 'Briefing - 12 min',
+      author: 'Enterprise AI',
     },
-  ]
-
-  const stats = [
-    { value: '5', label: 'Core operating areas' },
-    { value: '2,300', label: 'Employees (U.S.)' },
-    { value: 'OKC', label: 'Headquarters' },
-    { value: '24/7', label: 'Operations focus' },
+    {
+      title: 'Five AI wins in operations',
+      meta: 'Case study - 6 min read',
+      author: 'Ops Analytics',
+    },
   ]
 
   return (
@@ -98,295 +378,339 @@ function App() {
             </div>
           </div>
           <div className="nav-links">
-            <a href="#offerings">Offerings</a>
-            <a href="#chatdvn">ChatDVN</a>
-            <a href="#rnd">R&D</a>
-            <a href="#approach">Approach</a>
-            <a href="#use-cases">Use Cases</a>
-            <a href="#training">Training</a>
-            <a href="#insights">Insights</a>
-            <a href="#ideas">Ideas</a>
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`tab ${activeTab === tab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+                type="button"
+              >
+                {tab}
+              </button>
+            ))}
             <button className="btn btn-ghost">Submit a Request</button>
           </div>
         </nav>
 
-        <div className="hero-body">
-          <div className="hero-copy">
-            <p className="eyebrow">For Devon employees</p>
-            <h1>From vision to value: the Devon AI Reservoir.</h1>
-            <p className="lead">
-              Find trusted AI news, approved tools, and proven playbooks. Learn
-              fast, build safely, and deliver measurable impact across Devon.
-            </p>
-            <div className="hero-actions">
-              <button className="btn btn-primary">Start AI readiness check</button>
-              <button className="btn btn-secondary">Explore use cases</button>
-            </div>
-            <div className="hero-note">
-              New here? Start with the AI Essentials training path and policy.
-            </div>
-          </div>
-
-          <div className="hero-panel">
-            <div className="panel-card">
-              <p className="panel-title">Today in the Reservoir</p>
-              <ul className="panel-list">
-                <li>AI tool refresh now available for field teams.</li>
-                <li>Updated prompt safety checklist and approvals flow.</li>
-                <li>New data catalog sources for production analytics.</li>
-              </ul>
-              <button className="btn btn-small">Read the brief</button>
-            </div>
-            <div className="panel-card accent">
-              <p className="panel-title">Idea Portal</p>
-              <p className="panel-copy">
-                Submit opportunities to improve safety, efficiency, and recovery.
+        {activeTab === 'In The News' && (
+          <div className="hero-body">
+            <div className="hero-copy">
+              <p className="eyebrow">AI Reservoir</p>
+              <h1>From vision to value: the Devon AI Reservoir.</h1>
+              <p className="lead">
+                Find trusted AI news, approved tools, and proven playbooks. Learn
+                fast, build safely, and deliver measurable impact across Devon.
               </p>
-              <button className="btn btn-small btn-invert">Submit an idea</button>
+              <div className="hero-actions">
+                <button className="btn btn-primary">Open AI briefing</button>
+                <button className="btn btn-secondary">Explore tool box</button>
+              </div>
+              <div className="hero-note">
+                Start here if you are new: AI Fundamentals + Governance overview.
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className="feature-row">
-          <div className="feature-card">
-            <span className="feature-pill">Unlock the power of AI</span>
-            <p>
-              AI Reservoir connects teams to tools, training, and use cases that
-              deliver real operational value.
+        {activeTab !== 'In The News' && (
+          <div className="page-hero">
+            <p className="eyebrow">AI Reservoir</p>
+            <h1>{activeTab}</h1>
+            <p className="lead">
+              {activeTab === 'R&D' &&
+                'ETT explores emerging technology and hands off validated solutions.'}
+              {activeTab === 'Training' &&
+                'Curated learning paths with internal and third-party content.'}
+              {activeTab === 'The Art of Possible' &&
+                'Inspiration from real AI and automation wins across Devon.'}
+              {activeTab === 'Technology Tool Box' &&
+                'Approved tools, best-fit tasks, and points of contact.'}
+              {activeTab === 'Governance' &&
+                'Policies, risk guidance, and approval workflows.'}
+              {activeTab === 'Idea Portal' &&
+                'Submit, discuss, and vote on AI ideas.'}
+              {activeTab === 'ChatDVN' &&
+                'Your secure AI workspace for agents, projects, and prompts.'}
+              {activeTab === 'Blog' &&
+                'Insights and articles from Devon AI and trusted sources.'}
             </p>
           </div>
-          <div className="feature-card">
-            <span className="feature-pill">AI made simple</span>
-            <p>
-              Clear guidance, safe workflows, and a single place to start for
-              every Devon employee.
-            </p>
-          </div>
-        </div>
+        )}
       </header>
 
-      <section id="geology" className="geology-band">
-        <div>
-          <p className="eyebrow">Geology inspired</p>
-          <h2>Built on the layers that power Devon.</h2>
-          <p className="lead">
-            The AI Reservoir blends trusted data, domain expertise, and safe AI
-            practices to support decisions from the field to the boardroom.
-          </p>
-          <div className="hero-actions">
-            <button className="btn btn-primary">Explore basin intel</button>
-            <button className="btn btn-secondary">View AI standards</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="chatdvn" className="section chatdvn">
-          <div className="chatdvn-card">
-          <div>
-            <p className="eyebrow">AI workspace</p>
-            <h2>ChatDVN</h2>
-            <p className="lead">
-              Devon's secure AI interface for daily work. Access pre-built
-              agents, build your own, and automate workflows within approved
-              guardrails.
-            </p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="https://chat.dvn.com">
-                Open ChatDVN
-              </a>
-              <button className="btn btn-secondary">View usage guide</button>
+      <main className="tab-content">
+        {activeTab === 'In The News' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">In The News</p>
+                <h2>AI news and signal for Devon teams.</h2>
+              </div>
+              <button className="btn btn-ghost">View all news</button>
             </div>
-          </div>
-          <div className="chatdvn-logo-wrap">
-            <img
-              className="chatdvn-logo"
-              src="/src/assets/ChatDVN_2025_v5-13.png"
-              alt="ChatDVN"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section id="journey" className="section split journey">
-        <div>
-          <p className="eyebrow">Crafting your AI journey</p>
-          <h2>Make AI accessible for every Devon team.</h2>
-          <p className="lead">
-            Our mission is to demystify AI and make it easy to adopt safely,
-            helping every team move from experiment to impact.
-          </p>
-          <button className="btn btn-secondary">Learn more</button>
-        </div>
-        <div className="journey-card">
-          <h3>AI Reservoir playbook</h3>
-          <p>
-            Central guidance for safe usage, approved tools, and measurable ROI.
-          </p>
-          <ul>
-            <li>Governance and EHS alignment</li>
-            <li>Use case templates and intake</li>
-            <li>Training for every role</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="rnd" className="section split rnd">
-        <div>
-          <p className="eyebrow">R&D pipeline</p>
-          <h2>Emerging Technology Team (ETT)</h2>
-          <p className="lead">
-            ETT explores and vets emerging AI technologies, then hands off
-            validated solutions to the Enterprise AI team for scaling.
-          </p>
-          <button className="btn btn-secondary">Submit for evaluation</button>
-        </div>
-        <div className="stack">
-          <div className="list-card">
-            <p className="list-title">Discovery & vetting</p>
-            <p className="meta">Landscape scans, pilots, and feasibility checks.</p>
-          </div>
-          <div className="list-card">
-            <p className="list-title">Risk & compliance review</p>
-            <p className="meta">Security, privacy, and governance alignment.</p>
-          </div>
-          <div className="list-card">
-            <p className="list-title">Handoff to Enterprise AI</p>
-            <p className="meta">Production readiness, scale, and adoption.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="offerings" className="section">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">AI offerings</p>
-            <h2>Everything you need to work with AI at Devon.</h2>
-          </div>
-          <button className="btn btn-ghost">View all resources</button>
-        </div>
-        <div className="grid three">
-          {offerings.map((item) => (
-            <article key={item.title} className="card">
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="approach" className="section highlight">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Our approach</p>
-            <h2>From strategy to results with safe AI adoption.</h2>
-          </div>
-        </div>
-        <div className="grid three">
-          {approach.map((item) => (
-            <article key={item.title} className="card">
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="use-cases" className="section split">
-        <div>
-          <p className="eyebrow">Business use cases</p>
-          <h2>Playbooks aligned to operations and field realities.</h2>
-          <p className="lead">
-            Reusable patterns for drilling, production, maintenance, and
-            regulatory workflows. Built with safety and governance in mind.
-          </p>
-          <button className="btn btn-secondary">Browse playbooks</button>
-        </div>
-        <div className="stack">
-          {highlights.map((item) => (
-            <div key={item.title} className="list-card">
-              <p className="list-title">{item.title}</p>
-              <p className="meta">{item.detail}</p>
+            <div className="grid three">
+              {newsItems.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <div className="meta-row">
+                    <span className="meta">{item.source}</span>
+                    <span className="meta">{item.date}</span>
+                    <span className="tag">{item.tag}</span>
+                  </div>
+                  <a className="link" href={item.url} target="_blank" rel="noreferrer">
+                    {item.link}
+                  </a>
+                </article>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="training" className="section">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Training</p>
-            <h2>Learning paths for every role.</h2>
-          </div>
-          <button className="btn btn-ghost">View training</button>
-        </div>
-        <div className="grid three">
-          <article className="card">
-            <h3>AI Fundamentals</h3>
-            <p>Core concepts, governance, and secure usage patterns.</p>
-            <span className="meta">60 minutes</span>
-          </article>
-          <article className="card">
-            <h3>Applied AI Track</h3>
-            <p>Prompting, retrieval, and workflow automation labs.</p>
-            <span className="meta">90 minutes</span>
-          </article>
-          <article className="card">
-            <h3>Builder Track</h3>
-            <p>Hands-on labs for copilots, agents, and evaluation.</p>
-            <span className="meta">4 modules</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="insights" className="section">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Insights</p>
-            <h2>News, blogs, and podcasts from Devon AI.</h2>
-          </div>
-          <button className="btn btn-ghost">Open insights</button>
-        </div>
-        <div className="grid three">
-          {insights.map((item) => (
-            <article key={item.title} className="card">
-              <h3>{item.title}</h3>
-              <span className="meta">{item.meta}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section stats">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Impact</p>
-            <h2>AI aligned to operational excellence.</h2>
-          </div>
-        </div>
-        <div className="stats-grid">
-          {stats.map((item) => (
-            <div key={item.label} className="stat-card">
-              <p className="stat-value">{item.value}</p>
-              <p className="stat-label">{item.label}</p>
+            <div className="source-row">
+              <p className="eyebrow">Trusted sources</p>
+              <div className="source-chips">
+                {newsSources.map((item) => (
+                  <a
+                    key={item.name}
+                    className="source-chip"
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        )}
 
-      <section id="ideas" className="section callout">
-        <div>
-          <p className="eyebrow">Ideas portal</p>
-          <h2>Submit AI ideas that improve safety and performance.</h2>
-          <p className="lead">
-            Propose opportunities, track progress, and measure outcomes with the
-            Enterprise AI team.
-          </p>
-        </div>
-        <div className="callout-actions">
-          <button className="btn btn-primary">Launch portal</button>
-          <button className="btn btn-secondary">Request a demo</button>
-        </div>
-      </section>
+        {activeTab === 'R&D' && (
+          <section className="section split rnd">
+            <div>
+              <p className="eyebrow">R&D pipeline</p>
+              <h2>Emerging Technology Team (ETT)</h2>
+              <p className="lead">
+                ETT explores and vets emerging AI technologies, then hands off
+                validated solutions to the Enterprise AI team for scaling.
+              </p>
+              <button className="btn btn-secondary">Submit for evaluation</button>
+            </div>
+            <div className="stack">
+              {rndItems.map((item) => (
+                <div key={item.title} className="list-card">
+                  <p className="list-title">{item.title}</p>
+                  <p className="meta">{item.summary}</p>
+                  <div className="meta-row">
+                    <span className="tag">{item.status}</span>
+                    <span className="meta">Horizon: {item.horizon}</span>
+                    <span className="meta">Owner: {item.owner}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'Training' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Training</p>
+                <h2>Learning paths for every role.</h2>
+              </div>
+              <button className="btn btn-ghost">View training</button>
+            </div>
+            <div className="grid three">
+              {trainingItems.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <div className="meta-row">
+                    <span className="meta">{item.meta}</span>
+                    <span className="tag">{item.level}</span>
+                    <span className="meta">Provider: {item.provider}</span>
+                  </div>
+                  <button className="link">Open course</button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'The Art of Possible' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">The Art of Possible</p>
+                <h2>Showcasing AI and automation wins.</h2>
+              </div>
+              <button className="btn btn-ghost">Submit a story</button>
+            </div>
+            <div className="grid three">
+              {artOfPossible.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <div className="meta-row">
+                    <span className="tag">{item.impact}</span>
+                    <span className="meta">Owner: {item.owner}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'Technology Tool Box' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Technology Tool Box</p>
+                <h2>Approved tools and where they shine.</h2>
+              </div>
+              <button className="btn btn-ghost">Request access</button>
+            </div>
+            <div className="grid three">
+              {toolbox.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <span className="meta">Best for: {item.bestFor}</span>
+                  <span className="meta">POC: {item.contact}</span>
+                  <ul className="card-list">
+                    {item.capabilities.map((cap) => (
+                      <li key={cap}>{cap}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'Governance' && (
+          <section className="section highlight">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Governance</p>
+                <h2>Safe, compliant AI adoption.</h2>
+              </div>
+              <button className="btn btn-ghost">View policies</button>
+            </div>
+            <div className="grid three">
+              {governance.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <span className="meta">Owner: {item.owner}</span>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'Idea Portal' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Idea portal</p>
+                <h2>Submit, review, and upvote AI ideas.</h2>
+                <p className="lead">
+                  Propose opportunities, track progress, and collaborate with the
+                  Enterprise AI team.
+                </p>
+              </div>
+              <div className="callout-actions">
+                <button className="btn btn-primary">Launch portal</button>
+                <button className="btn btn-secondary">Browse ideas</button>
+              </div>
+            </div>
+            <div className="grid three">
+              {ideaPortal.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <span className="meta">{item.meta}</span>
+                </article>
+              ))}
+            </div>
+            <div className="idea-list">
+              {ideaList.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <div className="meta-row">
+                    <span className="tag">{item.status}</span>
+                    <span className="meta">Votes: {item.votes}</span>
+                    <span className="meta">Comments: {item.comments}</span>
+                    <span className="meta">Sponsor: {item.sponsor}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'ChatDVN' && (
+          <section className="section chatdvn">
+            <div className="chatdvn-card">
+              <div>
+                <p className="eyebrow">AI workspace</p>
+                <h2>ChatDVN</h2>
+                <p className="lead">
+                  Devon's secure AI interface for daily work. Access pre-built
+                  agents, build your own, and automate workflows within approved
+                  guardrails.
+                </p>
+                <div className="hero-actions">
+                  <a className="btn btn-primary" href="https://chat.dvn.com">
+                    Open ChatDVN
+                  </a>
+                  <button className="btn btn-secondary">View usage guide</button>
+                </div>
+              </div>
+              <div className="chatdvn-logo-wrap">
+                <img
+                  className="chatdvn-logo"
+                  src="/src/assets/ChatDVN_2025_v5-13.png"
+                  alt="ChatDVN"
+                />
+              </div>
+            </div>
+            <div className="grid three">
+              {chatDvn.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <span className="meta">{item.detail}</span>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'Blog' && (
+          <section className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Blog</p>
+                <h2>Articles from Devon AI and trusted sources.</h2>
+              </div>
+              <button className="btn btn-ghost">View all posts</button>
+            </div>
+            <div className="grid three">
+              {blogItems.map((item) => (
+                <article key={item.title} className="card">
+                  <h3>{item.title}</h3>
+                  <div className="meta-row">
+                    <span className="meta">{item.meta}</span>
+                    <span className="meta">{item.author}</span>
+                  </div>
+                  <button className="link">Read post</button>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
 
       <footer className="footer">
         <div>
@@ -396,14 +720,15 @@ function App() {
           </p>
         </div>
         <div className="footer-links">
-          <a href="#offerings">Offerings</a>
-          <a href="#chatdvn">ChatDVN</a>
-          <a href="#rnd">R&D</a>
-          <a href="#approach">Approach</a>
-          <a href="#use-cases">Use Cases</a>
-          <a href="#training">Training</a>
-          <a href="#insights">Insights</a>
-          <a href="#ideas">Ideas</a>
+          <span>In The News</span>
+          <span>R&D</span>
+          <span>Training</span>
+          <span>The Art of Possible</span>
+          <span>Technology Tool Box</span>
+          <span>Governance</span>
+          <span>Idea Portal</span>
+          <span>ChatDVN</span>
+          <span>Blog</span>
         </div>
       </footer>
     </div>
