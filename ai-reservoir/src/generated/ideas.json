@@ -1,32 +1,13 @@
 [
   {
-    "id": "1",
-    "title": "Automated downtime alerts",
-    "description": "AI-powered monitoring system that predicts and alerts teams about potential infrastructure downtime before it happens.",
-    "submittedBy": "Operations Team",
-    "submittedAt": "2026-01-15T10:30:00Z",
-    "votes": 42,
-    "comments": 9,
-    "status": "In review"
-  },
-  {
-    "id": "2",
-    "title": "Production forecast copilot",
-    "description": "Generative AI assistant that helps forecast production output using historical data and real-time inputs.",
-    "submittedBy": "Reservoir Team",
-    "submittedAt": "2026-01-18T14:22:00Z",
-    "votes": 31,
-    "comments": 6,
-    "status": "Pilot"
-  },
-  {
-    "id": "3",
-    "title": "Document QA for land filings",
-    "description": "AI system that answers questions about land filing documents, reducing review time and human error.",
-    "submittedBy": "Land Team",
-    "submittedAt": "2026-01-20T09:15:00Z",
-    "votes": 18,
-    "comments": 4,
-    "status": "Backlog"
+    "id": "1770048203701",
+    "title": "Create and AI Hub",
+    "description": "Create and AI Hub",
+    "submittedBy": "Steven Parks",
+    "submittedAt": "2026-02-02T16:03:23.701Z",
+    "votes": 0,
+    "comments": 0,
+    "status": "New",
+    "commentsList": []
   }
 ]

@@ -10,6 +10,17 @@ const app = express()
 
 app.use(express.json())
 
+// Add CORS headers
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
+  next()
+})
+
 const ideasPath = path.join(__dirname, '..', 'src', 'generated', 'ideas.json')
 
 // Email configuration (from environment variables)
@@ -59,7 +70,14 @@ async function sendIdeaNotificationEmail(idea) {
 function loadIdeas() {
   try {
     if (fs.existsSync(ideasPath)) {
-      return JSON.parse(fs.readFileSync(ideasPath, 'utf8'))
+      const raw = JSON.parse(fs.readFileSync(ideasPath, 'utf8'))
+      // normalize older entries to include commentsList and numeric votes
+      return raw.map((it) => ({
+        ...it,
+        commentsList: Array.isArray(it.commentsList) ? it.commentsList : [],
+        comments: typeof it.comments === 'number' ? it.comments : (Array.isArray(it.commentsList) ? it.commentsList.length : (it.comments || 0)),
+        votes: typeof it.votes === 'number' ? it.votes : Number(it.votes) || 0,
+      }))
     }
   } catch (e) {
     console.error('Failed to load ideas:', e.message)
@@ -142,6 +160,35 @@ app.post('/api/ideas/:id/upvote', (req, res) => {
   idea.votes += 1
   saveIdeas(ideas)
   res.json(idea)
+})
+
+// Comments endpoints
+app.get('/api/ideas/:id/comments', (req, res) => {
+  const { id } = req.params
+  const ideas = loadIdeas()
+  const idea = ideas.find(i => i.id === id)
+  if (!idea) return res.status(404).json({ error: 'idea not found' })
+  res.json(Array.isArray(idea.commentsList) ? idea.commentsList : [])
+})
+
+app.post('/api/ideas/:id/comments', (req, res) => {
+  const { id } = req.params
+  const { author, text } = req.body
+  if (!text || !text.trim()) return res.status(400).json({ error: 'text required' })
+  const ideas = loadIdeas()
+  const idea = ideas.find(i => i.id === id)
+  if (!idea) return res.status(404).json({ error: 'idea not found' })
+  const comment = {
+    id: Date.now().toString(),
+    author: author || 'Anonymous',
+    text: text.trim(),
+    createdAt: new Date().toISOString(),
+  }
+  idea.commentsList = Array.isArray(idea.commentsList) ? idea.commentsList : []
+  idea.commentsList.push(comment)
+  idea.comments = idea.commentsList.length
+  saveIdeas(ideas)
+  res.status(201).json(comment)
 })
 
 const SOURCES = {

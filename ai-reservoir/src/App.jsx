@@ -82,6 +82,29 @@ function App() {
     }
   }
 
+  const handleAddComment = async (id) => {
+    const text = window.prompt('Enter your comment:')
+    if (!text || !text.trim()) return
+    try {
+      const res = await fetch(`/api/ideas/${id}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      })
+      if (res.ok) {
+        const updated = await fetch(`/api/ideas?sort=${ideaSort}`).then(r => r.json())
+        setIdeas(Array.isArray(updated) ? updated : [])
+        alert('Comment added')
+      } else {
+        const err = await res.json()
+        alert('Failed to add comment: ' + (err.error || 'unknown'))
+      }
+    } catch (err) {
+      console.error('Add comment failed:', err)
+      alert('Failed to add comment')
+    }
+  }
+
   const newsItems = [
     {
       title: 'Lakehouse momentum accelerates in enterprise AI',
@@ -952,7 +975,13 @@ function App() {
                       >
                         👍 Upvote ({item.votes})
                       </button>
-                      <span className="meta">💬 {item.comments} comments</span>
+                      <button
+                        onClick={() => handleAddComment(item.id)}
+                        className="btn btn-ghost"
+                        style={{ marginLeft: '0.5rem', padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+                      >
+                        💬 Comment ({item.comments})
+                      </button>
                     </div>
                   </article>
                 ))}
