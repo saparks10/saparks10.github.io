@@ -5,11 +5,16 @@ const path = require('path')
 const parser = new Parser()
 
 const feeds = [
-  { name: 'Databricks', url: 'https://databricks.com/blog/feed' },
-  { name: 'Snowflake', url: 'https://www.snowflake.com/blog/rss.xml' },
-  { name: 'Spotfire', url: 'https://spotfire.tibco.com/feed' },
-  { name: 'Power BI', url: 'https://powerbi.microsoft.com/en-us/blog/feed/' },
-  { name: 'Anthropic', url: 'https://www.anthropic.com/rss' },
+  { key: 'openai', name: 'OpenAI News', url: 'https://openai.com/news/rss.xml' },
+  { key: 'googleresearch', name: 'Google Research Blog', url: 'https://research.google/blog/feed/' },
+  { key: 'deepmind', name: 'Google DeepMind Blog', url: 'https://deepmind.google/discover/blog/rss.xml' },
+  { key: 'msresearch', name: 'Microsoft Research Blog', url: 'https://www.microsoft.com/en-us/research/blog/feed/' },
+  { key: 'awsml', name: 'AWS Machine Learning Blog', url: 'https://aws.amazon.com/blogs/machine-learning/feed/' },
+  { key: 'nvidia', name: 'NVIDIA Developer Blog', url: 'https://developer.nvidia.com/blog/feed/' },
+  { key: 'huggingface', name: 'Hugging Face Blog', url: 'https://huggingface.co/blog/feed.xml' },
+  { key: 'mitai', name: 'MIT News, AI', url: 'https://news.mit.edu/rss/topic/artificial-intelligence2' },
+  { key: 'stanfordhai', name: 'Stanford HAI', url: 'https://hai.stanford.edu/rss.xml' },
+  { key: 'arxivcsai', name: 'arXiv cs.AI', url: 'https://rss.arxiv.org/rss/cs.AI' },
 ]
 
 async function fetchAll() {
@@ -18,18 +23,22 @@ async function fetchAll() {
   for (const f of feeds) {
     try {
       const feed = await parser.parseURL(f.url)
-      const entries = (feed.items || []).slice(0, 6).map((it) => ({
-        title: it.title,
-        link: it.link,
-        pubDate: it.pubDate || it.isoDate || null,
-        source: f.name,
-      }))
-      items.push(...entries)
+      const entry = (feed.items || [])[0]
+      if (entry) {
+        items.push({
+          title: entry.title || entry['itunes:title'] || null,
+          link: entry.link || entry.guid || null,
+          pubDate: entry.pubDate || entry.isoDate || entry.pubdate || null,
+          source: f.name,
+          sourceKey: f.key,
+        })
+      }
     } catch (err) {
       console.error('Failed to fetch', f.url, err.message || err)
     }
   }
 
+  // sort newest first
   items.sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
 
   const outPath = path.join(__dirname, '..', 'src', 'generated', 'news.json')

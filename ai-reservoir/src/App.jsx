@@ -171,6 +171,87 @@ function App() {
     },
   ]
 
+  const trainingCatalog = [
+    {
+      track: 'Employee Track',
+      sections: [
+        {
+          name: '101 - Required*',
+          courses: [
+            'ChatDVN 101 Fundamentals – Workday (1hr)',
+            'Devon Data Mgmt 101 – Workday (2hrs)',
+            'Intro to Data Literacy – DataCamp (2hrs)',
+            'Intro to SQL with AI – DataCamp (3hrs)',
+            'Intro to Data Security - DataCamp (2hrs)'
+          ]
+        },
+        {
+          name: '201 - Recommended (All below are DataCamp Online)',
+          courses: [
+            'Intro to Power BI (2hrs)',
+            'Understanding Data Visualization (2hrs)',
+            'Intermediate SQL with AI (3hrs)',
+            'Intro to Sigma (2hrs)',
+            'Intermediate SQL (2hrs)',
+            'Intro to Snowflake (2hrs)',
+            'Intro to Python (4hrs)',
+            'Communicating Data Insights (2hrs)',
+            'AI for Finance (3hrs)',
+            'Intro to Power Apps (Coming soon)',
+            'AI for Project Management (Coming soon)',
+            'AI for Human Resources (Coming 1/30/26)',
+            'AI for Data Analysts (Coming 3/31/26)',
+            'Prompt Engineering (Coming 3/31/26)',
+            'AI Professional Productivity Essentials (Coming 3/31/26)'
+          ]
+        },
+        {
+          name: '301 - Recommended',
+          courses: [
+            'AI in Sigma – DVN Teams Workshop (1hr)',
+            'PowerAutomate & AI – DVN Teams Workshop (1hr)',
+            'AI in Power BI – DVN Teams Workshop (1hr)',
+            'Power BI Dashboard in a Day – DVN Workshop (2hrs)',
+            'Intermediate Python – DataCamp (9.5hrs)',
+            'Data Visualization in Power BI – DataCamp (3hrs)',
+            'Visualization in Sigma – DataCamp (2.5hrs)'
+          ]
+        },
+        {
+          name: 'Ongoing Information and Support',
+          courses: [
+            'Spotfire Comm of Practice (2hrs)',
+            'Sigma Office Hours (1hr)',
+            'Data@Devon Office Hours and Teams Channel'
+          ]
+        }
+      ]
+    },
+    {
+      track: 'Leader Track',
+      sections: [
+        {
+          name: 'Required*',
+          courses: [
+            'ChatDVN 101 Fundamentals – Workday (1hr)',
+            'Devon Data Mgmt 101 – Workday (2hrs)',
+            'Intro to Data Literacy – DataCamp (2hrs)',
+            'Intro to SQL with AI – DataCamp (3hrs)',
+            'Digital Leadership – DVN Workshop (2hrs)'
+          ]
+        },
+        {
+          name: 'Required (All below are Devon In-Person Workshops)',
+          courses: [
+            'Data Foundations & AI Readiness (2hrs)',
+            'AI Mastery & ChatDVN for Leaders (2hrs)',
+            'Strategic AI Application & Future-Proofing (2hrs)'
+          ]
+        }
+      ]
+    }
+  ]
+
   const artOfPossible = [
     {
       title: 'Maintenance triage automation',
@@ -448,7 +529,7 @@ function App() {
             <div className="section-head">
               <div>
                 <p className="eyebrow">In The News</p>
-                <h2>AI news and signal for Devon teams.</h2>
+                <h2>AI news and updates.</h2>
               </div>
               <button className="btn btn-ghost">View all news</button>
             </div>
@@ -521,21 +602,53 @@ function App() {
                 <p className="eyebrow">Training</p>
                 <h2>Learning paths for every role.</h2>
               </div>
-              <button className="btn btn-ghost">View training</button>
+              <a className="btn btn-primary" href="https://dvn.sharepoint.com/:b:/r/sites/Strata/Shared%20Documents/01%20ChatDVN/Digital%20Devon%20Learning%20Tracks%20v2.pdf?csf=1&web=1&e=ZaOh8g" target="_blank" rel="noopener noreferrer">Devon Digital Learning</a>
             </div>
-            <div className="grid three">
-              {trainingItems.map((item) => (
-                <article key={item.title} className="card">
-                  <h3>{item.title}</h3>
-                  <p>{item.summary}</p>
-                  <div className="meta-row">
-                    <span className="meta">{item.meta}</span>
-                    <span className="tag">{item.level}</span>
-                    <span className="meta">Provider: {item.provider}</span>
-                  </div>
-                  <button className="link">Open course</button>
-                </article>
-              ))}
+
+            {/* Employee Track - top row: 3 columns (101, 201, 301) */}
+            <div className="training-track">
+              <div className="track-header">
+                <p className="eyebrow">Employee Track</p>
+              </div>
+              <div className="grid three">
+                {trainingCatalog[0].sections.slice(0, 3).map((sec) => (
+                  <article key={sec.name} className="card">
+                    <div className="card-head">
+                      <p className="list-title">{sec.name}</p>
+                    </div>
+                    <ul className="card-list">
+                      {sec.courses.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* Leader Track - bottom row */}
+            <div className="training-track">
+              <div className="track-header">
+                <p className="eyebrow">Leader Track</p>
+              </div>
+              <div className="grid three">
+                {trainingCatalog[1].sections.map((sec) => (
+                  <article key={sec.name} className="card">
+                    <div className="card-head">
+                      <p className="list-title">{sec.name}</p>
+                    </div>
+                    <ul className="card-list">
+                      {sec.courses.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+                {trainingCatalog[1].sections.length < 3 &&
+                  Array.from({ length: 3 - trainingCatalog[1].sections.length }).map((_, i) => (
+                    <article key={`empty-${i}`} className="card empty" />
+                  ))}
+              </div>
             </div>
           </section>
         )}
