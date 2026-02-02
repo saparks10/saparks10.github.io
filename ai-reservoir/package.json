@@ -8,9 +8,13 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "fetch-news": "node scripts/fetch-news.cjs"
+    "fetch-news": "node scripts/fetch-news.cjs",
+    "start-api": "node server/index.js"
   },
   "dependencies": {
+    "express": "^4.18.2",
+    "fast-xml-parser": "^4.2.4",
+    "nodemailer": "^7.0.13",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rss-parser": "^3.12.0"

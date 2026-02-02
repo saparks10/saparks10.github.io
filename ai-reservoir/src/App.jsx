@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import generatedNews from './generated/news.json'
 
 function App() {
   const tabs = [
@@ -14,6 +15,72 @@ function App() {
     'Blog',
   ]
   const [activeTab, setActiveTab] = useState(tabs[0])
+
+  // Ideas state
+  const [ideas, setIdeas] = useState([])
+  const [ideasLoading, setIdeasLoading] = useState(false)
+  const [ideaSort, setIdeaSort] = useState('votes')
+  const [ideaSearch, setIdeaSearch] = useState('')
+  const [showSubmitForm, setShowSubmitForm] = useState(false)
+  const [formData, setFormData] = useState({ title: '', description: '', submittedBy: '' })
+  const [formSubmitting, setFormSubmitting] = useState(false)
+
+  // Fetch ideas on mount
+  useEffect(() => {
+    setIdeasLoading(true)
+    fetch(`/api/ideas?sort=${ideaSort}&search=${ideaSearch}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setIdeas(Array.isArray(data) ? data : [])
+      })
+      .catch(() => setIdeas([]))
+      .finally(() => setIdeasLoading(false))
+  }, [ideaSort, ideaSearch])
+
+  const handleSubmitIdea = async (e) => {
+    e.preventDefault()
+    if (!formData.title.trim() || !formData.description.trim()) {
+      alert('Title and description are required')
+      return
+    }
+    setFormSubmitting(true)
+    try {
+      const res = await fetch('/api/ideas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
+      if (res.ok) {
+        console.log('Idea submitted successfully:', data)
+        setFormData({ title: '', description: '', submittedBy: '' })
+        setShowSubmitForm(false)
+        // Refresh ideas
+        const updated = await fetch(`/api/ideas?sort=${ideaSort}`).then(r => r.json())
+        setIdeas(Array.isArray(updated) ? updated : [])
+        alert('Idea submitted successfully!')
+      } else {
+        alert('Error submitting idea: ' + (data.error || 'Unknown error'))
+      }
+    } catch (err) {
+      console.error('Submit idea failed:', err)
+      alert('Failed to submit idea: ' + err.message)
+    } finally {
+      setFormSubmitting(false)
+    }
+  }
+
+  const handleUpvote = async (id) => {
+    try {
+      const res = await fetch(`/api/ideas/${id}/upvote`, { method: 'POST' })
+      if (res.ok) {
+        const updated = await fetch(`/api/ideas?sort=${ideaSort}`).then(r => r.json())
+        setIdeas(Array.isArray(updated) ? updated : [])
+      }
+    } catch (err) {
+      console.error('Upvote failed:', err)
+    }
+  }
 
   const newsItems = [
     {
@@ -71,6 +138,51 @@ function App() {
       url: 'https://www.anthropic.com/news',
     },
   ]
+
+  const [dynamicNews, setDynamicNews] = useState([])
+  const [newsLoading, setNewsLoading] = useState(false)
+
+  const mappedGeneratedNews = (Array.isArray(generatedNews) ? generatedNews : []).map((item) => ({
+    title: item.title,
+    summary: item.summary || '',
+    source: item.source || item.sourceKey || '',
+    date: item.pubDate || item.publishedAt || '',
+    tag: '',
+    link: 'Read',
+    url: item.link || item.url || ''
+  }))
+
+  useEffect(() => {
+    let mounted = true
+    setNewsLoading(true)
+    fetch('/api/ai-news/all')
+      .then((r) => r.json())
+      .then((data) => {
+        if (!mounted) return
+        const items = []
+        if (data && Array.isArray(data.sources)) {
+          data.sources.forEach((s) => {
+            if (s.status === 'ok' && s.latest) {
+              items.push({
+                title: s.latest.title,
+                summary: s.latest.summary || '',
+                source: s.sourceName,
+                date: s.latest.publishedAt || s.fetchedAt,
+                tag: '',
+                link: 'Read',
+                url: s.latest.url,
+              })
+            }
+          })
+        }
+        setDynamicNews(items)
+      })
+      .catch(() => {})
+      .finally(() => mounted && setNewsLoading(false))
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   const newsSources = [
     { name: 'Power BI', url: 'https://learn.microsoft.com/en-us/power-bi/' },
@@ -534,7 +646,12 @@ function App() {
               <button className="btn btn-ghost">View all news</button>
             </div>
             <div className="grid three">
-              {newsItems.map((item) => (
+              {(dynamicNews.length > 0 
+                ? dynamicNews 
+                : mappedGeneratedNews.length > 0 
+                  ? [...mappedGeneratedNews, ...newsItems]
+                  : newsItems
+              ).map((item) => (
                 <article key={item.title} className="card">
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
@@ -543,7 +660,7 @@ function App() {
                     <span className="meta">{item.date}</span>
                     <span className="tag">{item.tag}</span>
                   </div>
-                  <a className="link" href={item.url} target="_blank" rel="noreferrer">
+                  <a className="link" href={item.url} target="_blank" rel="noopener noreferrer">
                     {item.link}
                   </a>
                 </article>
@@ -737,32 +854,110 @@ function App() {
                 </p>
               </div>
               <div className="callout-actions">
-                <button className="btn btn-primary">Launch portal</button>
-                <button className="btn btn-secondary">Browse ideas</button>
+                <button className="btn btn-primary" onClick={() => setShowSubmitForm(!showSubmitForm)}>
+                  {showSubmitForm ? 'Cancel' : 'Submit an idea'}
+                </button>
               </div>
             </div>
-            <div className="grid three">
-              {ideaPortal.map((item) => (
-                <article key={item.title} className="card">
-                  <h3>{item.title}</h3>
-                  <p>{item.summary}</p>
-                  <span className="meta">{item.meta}</span>
-                </article>
-              ))}
-            </div>
-            <div className="idea-list">
-              {ideaList.map((item) => (
-                <article key={item.title} className="card">
-                  <h3>{item.title}</h3>
-                  <div className="meta-row">
-                    <span className="tag">{item.status}</span>
-                    <span className="meta">Votes: {item.votes}</span>
-                    <span className="meta">Comments: {item.comments}</span>
-                    <span className="meta">Sponsor: {item.sponsor}</span>
+
+            {/* Submit Form */}
+            {showSubmitForm && (
+              <div className="idea-form-container" style={{ marginBottom: '2rem', padding: '1.5rem', border: '1px solid #ccc', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
+                <h3 style={{ marginTop: 0 }}>Submit Your Idea</h3>
+                <form onSubmit={handleSubmitIdea}>
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ display: 'block', marginBottom: '0.75rem', fontWeight: '700', fontSize: '1rem', color: '#333' }}>
+                      Idea Title *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g., AI-powered cost optimization"
+                      value={formData.title}
+                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                      style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ddd', fontSize: '1rem', boxSizing: 'border-box' }}
+                    />
                   </div>
-                </article>
-              ))}
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ display: 'block', marginBottom: '0.75rem', fontWeight: '700', fontSize: '1rem', color: '#333' }}>
+                      Description *
+                    </label>
+                    <textarea
+                      placeholder="Describe your idea, its benefits, and potential impact..."
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      rows="4"
+                      style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ddd', fontSize: '1rem', boxSizing: 'border-box' }}
+                    />
+                  </div>
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label style={{ display: 'block', marginBottom: '0.75rem', fontWeight: '700', fontSize: '1rem', color: '#333' }}>
+                      Your Name (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Leave blank to submit anonymously"
+                      value={formData.submittedBy}
+                      onChange={(e) => setFormData({ ...formData, submittedBy: e.target.value })}
+                      style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ddd', fontSize: '1rem', boxSizing: 'border-box' }}
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary" disabled={formSubmitting}>
+                    {formSubmitting ? 'Submitting...' : 'Submit Idea'}
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {/* Browse & Sort */}
+            <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <input
+                type="text"
+                placeholder="Search ideas by title or description..."
+                value={ideaSearch}
+                onChange={(e) => setIdeaSearch(e.target.value)}
+                style={{ flex: '1', minWidth: '250px', padding: '0.75rem', borderRadius: '4px', border: '1px solid #ddd', fontSize: '1rem' }}
+              />
+              <select
+                value={ideaSort}
+                onChange={(e) => setIdeaSort(e.target.value)}
+                style={{ padding: '0.75rem', borderRadius: '4px', border: '1px solid #ddd', fontSize: '1rem' }}
+              >
+                <option value="votes">Sort by: Most Votes</option>
+                <option value="date">Sort by: Newest</option>
+                <option value="title">Sort by: Title A-Z</option>
+              </select>
             </div>
+
+            {/* Ideas List */}
+            {ideasLoading ? (
+              <p>Loading ideas...</p>
+            ) : ideas.length === 0 ? (
+              <p>No ideas found. Be the first to submit one!</p>
+            ) : (
+              <div className="idea-list">
+                {ideas.map((item) => (
+                  <article key={item.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <h3 style={{ margin: 0 }}>{item.title}</h3>
+                    <p style={{ margin: 0, fontSize: '0.95rem' }}>{item.description}</p>
+                    <div className="meta-row">
+                      <span className="tag">{item.status}</span>
+                      <span className="meta">Submitted: {new Date(item.submittedAt).toLocaleDateString()}</span>
+                      <span className="meta">By: {item.submittedBy}</span>
+                    </div>
+                    <div className="meta-row" style={{ marginTop: '0.5rem' }}>
+                      <button
+                        onClick={() => handleUpvote(item.id)}
+                        className="btn btn-secondary"
+                        style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+                      >
+                        👍 Upvote ({item.votes})
+                      </button>
+                      <span className="meta">💬 {item.comments} comments</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </section>
         )}
 
